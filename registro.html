@@ -6,19 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
 
-    <div class="form-box" id="registro">
-        <form action="">
-            <h2>Registro</h2>
-            <input type="text" name="Nombre"  placeholder="Correo electrónico" required>
-            <input type="email" name="email" placeholder="Correo electrónico" required>
-            <input type="password" name="contraseña" placeholder="Password" required>
-            <select name="role" required>
-                <option value="">--Seleccione su rol</option>
-                <option value="admin">--Administrador</option>
-                <option value="user">--Usuario</option>
-            </select>
-            <button type="submit" name="Registro">Registrarme</button>
-            <p>Ya tienes cuenta?<a href="#">Iniciar sesion</a></p>
-        </form>
-    </div>
 </head>
+
+<body>
+    <div class="contenedor">
+        <div class="form-box" id="registro">
+            <form action="">
+                <h2>Registro</h2>
+                <input type="text" name="Nombre" placeholder="Correo electrónico" required>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <input type="password" name="contraseña" placeholder="Password" required>
+                <select name="role" required>
+                    <option value="">--Seleccione su rol</option>
+                    <option value="admin">--Administrador</option>
+                    <option value="user">--Usuario</option>
+                </select>
+                <button type="submit" name="Registro">Registrarme</button>
+                <p>Ya tienes cuenta?<a href="#">Iniciar sesion</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
