@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villas Brenes</title>
+    <link rel="stylesheet" href="Css/estiloDashboardCliente.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <h1>Villas Brenes</h1>
+            <span class="subtitle">Mi Espacio Personal</span>
+        </div>
+        <div class="user-info">
+            <span class="user-name" id="userName">Cliente</span>
+            <span class="user-rol client">CLIENTE</span>
+            <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!--Mensaje de bienvenida-->
+        <div class="welcome-card">
+            <h2>Hola, <span id="displayName">Cliente</span></h2>
+            <p>Bienvenido a tu espacio personal en Villas Brenes</p>
+        </div>
+
+        <div class="quick-stats">
+            <div class="quick-stat">
+                <div class="stat-number" id="myBookings">1 ej</div>
+                <div class="stat-label">Mis Reservas</div>
+            </div>
+            <div class="quick-stat">
+                <div class="stat-number" id="daysSince">1 ej</div>
+                <div class="stat-label">Días pasados en Villas Brenes</div>
+            </div>
+        </div>
+
+        <!--Acciones para cliente-->
+        <div class="client-actions">
+            <h3>Mis Opciones</h3>
+            <div class="actions-grid">
+                <div class="client-action-card">
+                    <h4>Buscar Villas</h4>
+                    <p>Explora nuestras villas disponibles</p>
+                    <button class="client-btn">Explorar</button>
+                </div>
+                
+                <div class="client-action-card">
+                    <h4>Mis Reservas</h4>
+                    <p>Gestiona tus reservas actuales</p>
+                    <button class="client-btn">Ver Reservas</button>
+                </div>
+                
+                <div class="client-action-card">
+                    <h4>Mi Perfil</h4>
+                    <p>Actualiza tu información personal</p>
+                    <button class="client-btn">Editar Perfil</button>
+                </div>
+                
+                <div class="client-action-card">
+                    <h4>Soporte</h4>
+                    <p>¿Necesitas ayuda? Contáctanos</p>
+                    <button class="client-btn">Contactar</button>
+                </div>
+                
+                <div class="client-action-card">
+                    <h4>Solicitar transporte</h4>
+                    <p>Solicita un vehiculo para movilizarte</p>
+                    <button class="client-btn">Escribir Reseña</button>
+                </div>
+                
+                <div class="client-action-card">
+                    <h4>Configuraciones</h4>
+                    <p>Gestiona tu idioma preferido y notificaciones entrantes</p>
+                    <button class="client-btn">Ver Ofertas</button>
+                </div>
+
+                <div class="client-action-card">
+                    <h4>Ubicaciones de interés</h4>
+                    <p>Mira lugares atractivos en la zona para viajar</p>
+                    <button class="client-btn">Escribir Reseña</button>
+                </div>
+
+                <div class="client-action-card">
+                    <h4>Encuesta de satisfacción</h4>
+                    <p>Dinos luego de tu estadia que valoración nos das</p>
+                    <button class="client-btn">Ver Ofertas</button>
+                </div>
+            </div>
+        </div>
+
+        <!--Recomendaciones para cliente-->
+        <div class="recommended-villas">
+            <h3>Villas recomendadas para ti</h3>
+            <div class="villas-grid">
+                <div class="villa-card">
+                    <h4>Casa del cangrejo</h4>
+                    <p>4 personas - Piscina - WiFi</p>
+                    <div class="villa-price">₡85,000/noche</div>
+                    <button class="villa-btn">Reservar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            
+            //Verificar login o si no redirigir
+            if (!currentUser) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            //Mostrar información del cliente
+            document.getElementById('userName').textContent = currentUser.nombre;
+            document.getElementById('displayName').textContent = currentUser.nombre;
+        });
+    </script>
+</body>
+</html>
