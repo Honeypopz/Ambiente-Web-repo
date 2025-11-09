@@ -130,3 +130,13 @@ function logout() {
     const auth = new Authentication();
     auth.logout();
 }
+
+function proceso(){
+    var nombre = document.getElementById("nombre").value;
+    if(nombre == ''){
+    alert("Ingrese su nombre");
+    }
+}
+
+
+
