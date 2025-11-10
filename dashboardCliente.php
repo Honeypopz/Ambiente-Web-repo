@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['id_usuario'])) {
+    header('Location: login.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,16 +21,16 @@
             <span class="subtitle">Mi Espacio Personal</span>
         </div>
         <div class="user-info">
-            <span class="user-name" id="userName">Cliente</span>
+            <span class="user-name" id="userName"><?php echo $_SESSION['nombre_usuario']; ?></span>
             <span class="user-rol client">CLIENTE</span>
-            <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+            <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
         </div>
     </nav>
 
     <div class="container">
         <!--Mensaje de bienvenida-->
         <div class="welcome-card">
-            <h2>Hola, <span id="displayName">Cliente</span></h2>
+            <h2>Hola, <span id="displayName"><?php echo $_SESSION['nombre_usuario']; ?></span></h2>
             <p>Bienvenido a tu espacio personal en Villas Brenes</p>
         </div>
 
@@ -106,20 +113,10 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            
-            //Verificar login o si no redirigir
-            if (!currentUser) {
-                window.location.href = 'login.html';
-                return;
-            }
-            
-            //Mostrar información del cliente
-            document.getElementById('userName').textContent = currentUser.nombre;
-            document.getElementById('displayName').textContent = currentUser.nombre;
+        
         });
     </script>
 </body>

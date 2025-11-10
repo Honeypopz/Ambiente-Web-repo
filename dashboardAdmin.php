@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['id_usuario']) || $_SESSION['rol_usuario'] !== 'administrador') {
+    header('Location: login.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,9 +21,9 @@
             <span class="subtitle">Panel de Administración</span>
         </div>
         <div class="user-info">
-            <span class="user-name" id="userName">Administrador</span>
+            <span class="user-name" id="userName"><?php echo $_SESSION['nombre_usuario']; ?></span>
             <span class="user-rol admin">Administrador</span>
-            <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+            <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
         </div>
     </nav>
 
@@ -99,24 +106,11 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            
-            //Verificar si es admin o no
-            if (!currentUser || currentUser.rol !== 'administrador') {
-                window.location.href = 'login.html';
-                return;
-            }
-            
-            //Mostrar información del admin
-            document.getElementById('userName').textContent = currentUser.nombre;
-            
-            //Calculo
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('totalUsers').textContent = '15';
         });
+        
     </script>
 </body>
 </html>
