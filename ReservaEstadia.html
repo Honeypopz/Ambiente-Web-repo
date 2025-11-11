@@ -11,22 +11,23 @@
 <body>
     <div class="contenedor">
         <div class="form-box" id="reservaViaje">
-            <form id="viajeForm">
+            <form id="viajeForm" name="Reserva" method="get">
                 <h2>Reserva tu Estadía</h2>
-                <input type="text" name="Nombre" placeholder="Nombre Reservante" required>
+                <input type="text" name="Nombre" id="nombreR" placeholder="Nombre Reservante" required>
                 <input type="date" value="2025-11-01" min="2025-11-30" max="2026-01-31" name="Fecha de entrada"
-                    placeholder="FechaEntrada" required>
+                    id="fechaEntrada" placeholder="FechaEntrada" required>
                 <input type="date" value="2025-11-01" min="2025-11-30" max="2026-01-31" name="Fecha de salida"
-                    placeholder="FechaSalida" required>
-                <input type="number" name="personas" placeholder="adultos" value="1" required>
-                <input type="number" name="ninos" placeholder="Niños" value="0" required>
-                <input type="number" name="habitaciones" placeholder="Cantidad de habitaciones" required>
-                <input type="email" name="email" placeholder="Correo electrónico" required>
-                <button type="submit">Reservar</button>
+                    id="fechaSalida" placeholder="FechaSalida" required>
+                <input type="number" name="personas" id="adultos" placeholder="adultos" value="1" required>
+                <input type="number" name="ninos" id="ninos" placeholder="Niños" value="0" required>
+                <input type="number" name="hab" id="cuartos" placeholder="Cantidad de habitaciones" required>
+                <input type="email" name="email" id="correo" placeholder="Correo electrónico" required>
+                <button type="button" id="enviar" onclick="reservar()">Reservar</button>
             </form>
             <div id="message" class="message"></div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 
