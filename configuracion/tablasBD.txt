@@ -9,3 +9,17 @@ CREATE TABLE usuarios (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
+
+--tabla reservas--
+
+CREATE TABLE reservas (
+    id_reserva INT NOT NULL AUTO_INCREMENT,
+    nombre_Reservante VARCHAR(100) NOT NULL,
+    fechaEntrada DATE NOT NULL,
+    fechaSalida DATE NOT NULL,
+    adultos INT NOT NULL,
+    niños INT NOT NULL,
+    habitacion INT NOT NULL,
+    email VARCHAR(100) NOT NULL
+    FOREING KEY (nombre_Reservante) REFERENCES usuarios (nombre)
+);

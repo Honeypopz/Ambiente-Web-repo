@@ -11,7 +11,7 @@
 <body>
     <div class="contenedor">
         <div class="form-box" id="reservaViaje">
-            <form id="viajeForm" name="Reserva" method="get">
+            <form id="viajeForm" name="Reserva" method="post" action="Estadia.php">
                 <h2>Reserva tu Estadía</h2>
                 <input type="text" name="Nombre" id="nombreR" placeholder="Nombre Reservante" required>
                 <input type="date" value="2025-11-01" min="2025-11-30" max="2026-01-31" name="Fecha de entrada"
