@@ -9,14 +9,10 @@
 
 <body>
     <h1>Pedir vehículo</h1>
-    <div id="buscar">
-        <form name="TransporteForm" method="post" action="">
+    <div class="formTran" id="buscar">
+        <form name="TransporteForm" method="post" action="RegistroViaje.php">
             <input type="number" name="cantidad" placeholder="Cantidad de personas" required>
-            <select class="form-select" aria-label="Ubicación">
-                <option selected>Eliga su destino</option>
-                <option value="1">Playa ubita</option>
-                <option value="2">Liberia</option>
-            </select>
+            <input type="hidden" name="destino" placeholder="Destino">
             <select class="form-select" aria-label="Tipo de vehículo">
                 <option selected>Eliga el vehículo</option>
                 <option value="1">Automovil</option>
@@ -26,8 +22,7 @@
         </form>
     </div>
 
-    <script src="script.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap"></script>
 </body>
-
 
 </html>

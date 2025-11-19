@@ -13,7 +13,7 @@ CREATE TABLE usuarios (
 --tabla reservas--
 
 CREATE TABLE reservas (
-    id_reserva INT NOT NULL AUTO_INCREMENT,
+    id_reserva INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombre_Reservante VARCHAR(100) NOT NULL,
     fechaEntrada DATE NOT NULL,
     fechaSalida DATE NOT NULL,
@@ -22,4 +22,22 @@ CREATE TABLE reservas (
     habitacion INT NOT NULL,
     email VARCHAR(100) NOT NULL
     FOREING KEY (nombre_Reservante) REFERENCES usuarios (nombre)
+);
+
+--tabla viaje--
+CREATE TABLE viaje(
+    id_viaje INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    cantidad int NOT NULL,
+    destino VARCHAR(100),
+    vehiculo VARCHAR(50) NOT NULL,
+    nombre_conductor VARCHAR(50),
+    FOREIGN KEY (nombre_conductor) REFERENCES conductor(nombre_conductor)
+);
+
+--tabla conductor--
+CREATE TABLE conductor(
+    nombre_conductor VARCHAR(50) PRIMARY KEY,
+    id_conductor int AUTO_INCREMENT,
+    vehiculo VARCHAR(50),
+    contacto INT NOT NULL,
 );

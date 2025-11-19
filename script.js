@@ -11,16 +11,3 @@
 
    console.log(reserva);
 }
-
-function ubi(){
-  var coor = {lat:-84.1136441 ,lng:-84.1110692};
-  var mapa = new google.maps.Map(document.getElementById("buscar"),{ 
-    zoom: 5,
-    center: coor
-  });
-var marker = new google.maps.Marker({
-  position: coor,
-  mapa: mapa
-})
-
-}
