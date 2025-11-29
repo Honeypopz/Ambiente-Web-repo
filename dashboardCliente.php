@@ -11,6 +11,7 @@ if (!isset($_SESSION['id_usuario'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Villas Brenes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="Css/estiloDashboardCliente.css">
 </head>
 
@@ -22,7 +23,7 @@ if (!isset($_SESSION['id_usuario'])) {
         </div>
         <div class="user-info">
             <span class="user-name" id="userName"><?php echo $_SESSION['nombre_usuario']; ?></span>
-            <span class="user-rol client">CLIENTE</span>
+            <span class="user-role client">CLIENTE</span>
             <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
         </div>
     </nav>
@@ -119,5 +120,25 @@ if (!isset($_SESSION['id_usuario'])) {
         
         });
     </script>
+    <!--footer con la informacion de contacto-->
+    <footer>
+    <div class="footer-content">
+        <p>&copy; 2024 Villas Brenes. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="https://www.facebook.com/p/Villas-Brenes-61571505092179/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <i class="bi bi-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="https://wa.link/qmnavx" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                <i class="bi bi-whatsapp" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.instagram.com/villasbrenes_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <i class="bi bi-instagram" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:test@gmail.com" aria-label="Email">
+                <i class="bi bi-envelope-at" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+    </footer>
 </body>
 </html>
