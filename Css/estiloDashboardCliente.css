@@ -144,11 +144,6 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.action-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
 .client-action-card h4 {
     color: #333;
     margin-bottom: 0.5rem;
@@ -175,6 +170,7 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
 }
+
 
 .recommended-villas {
     background: white;
@@ -280,4 +276,6 @@ body {
 .footer-content p {
     margin-bottom: 0.5rem;
     padding: 0.5em;
+}
+    background: #00b685;
 }

@@ -3,13 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro - Villas Brenes</title>
+    <title data-key="titulo">Registro - Villas Brenes</title>
     <link rel="stylesheet" href="Css/estiloRegistro.css">
 </head>
 
 <body>
+
+    <!-- Selector de idioma -->
+    <div style="text-align:right; padding: 10px;">
+        <select id="language-selector">
+            <option value="es">Español</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+
+
     <div class="contenedor">
         <div class="form-box" id="registro">
+
             <?php
             //registro
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -30,6 +41,7 @@
                     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                         echo '<div class="message error">El formato del email no es válido</div>';
                     } else {
+
                         // Verificar existencia de email
                         $check_email = $conexion->prepare("SELECT id FROM usuarios WHERE email = ?");
                         $check_email->bind_param("s", $email);
@@ -57,17 +69,65 @@
                 }
             }
             ?>
-            
+
             <form method="POST" action="registro.php">
-                <h2>Registro</h2>
-                <input type="text" name="nombre" placeholder="Nombre completo" required>
-                <input type="email" name="email" placeholder="Correo electrónico" required>
-                <input type="password" name="contraseña" placeholder="Contraseña (mínimo 6 caracteres)" required>
-                <button type="submit">Registrarme</button>
-                <p>¿Ya tienes cuenta? <a href="login.php">Iniciar sesión</a></p>
+                <h2 data-key="registro_titulo">Registro</h2>
+
+                <input type="text" name="nombre" placeholder="Nombre completo" data-key="nombre_ph" required>
+                <input type="email" name="email" placeholder="Correo electrónico" data-key="correo_ph" required>
+                <input type="password" name="contraseña" placeholder="Contraseña (mínimo 6 caracteres)" data-key="contra_ph" required>
+
+                <button type="submit" data-key="registrarme_btn">Registrarme</button>
+
+                <p data-key="tienes_cuenta">¿Ya tienes cuenta?
+                    <a href="login.php" data-key="iniciar_sesion_link">Iniciar sesión</a>
+                </p>
             </form>
-            <div id="message" class="message"></div>
+
         </div>
     </div>
+
+<script>
+const translations = {
+    es: {
+        titulo: "Registro - Villas Brenes",
+        registro_titulo: "Registro",
+        nombre_ph: "Nombre completo",
+        correo_ph: "Correo electrónico",
+        contra_ph: "Contraseña (mínimo 6 caracteres)",
+        registrarme_btn: "Registrarme",
+        tienes_cuenta: "¿Ya tienes cuenta?",
+        iniciar_sesion_link: "Iniciar sesión"
+    },
+    en: {
+        titulo: "Register - Villas Brenes",
+        registro_titulo: "Sign Up",
+        nombre_ph: "Full name",
+        correo_ph: "Email address",
+        contra_ph: "Password (minimum 6 characters)",
+        registrarme_btn: "Sign Up",
+        tienes_cuenta: "Already have an account?",
+        iniciar_sesion_link: "Log In"
+    }
+};
+
+
+document.getElementById("language-selector").addEventListener("change", function () {
+    const lang = this.value;
+
+    // Cambia textos normales
+    document.querySelectorAll("[data-key]").forEach(element => {
+        const key = element.getAttribute("data-key");
+
+        // Si es placeholder, se cambia distinto
+        if (element.placeholder !== undefined && element.hasAttribute("placeholder")) {
+            element.placeholder = translations[lang][key];
+        } else {
+            element.textContent = translations[lang][key];
+        }
+    });
+});
+</script>
+
 </body>
 </html>
