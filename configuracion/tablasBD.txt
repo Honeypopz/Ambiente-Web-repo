@@ -41,3 +41,11 @@ CREATE TABLE conductor(
     vehiculo VARCHAR(50),
     contacto INT NOT NULL,
 );
+
+-- tabla lugares de interés --
+CREATE TABLE lugares_interes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT NOT NULL,
+    imagen VARCHAR(255) NOT NULL
+);

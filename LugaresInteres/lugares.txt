@@ -1,0 +1,5 @@
+Playa Blanca|Hermosa playa de arena blanca.|playa.jpg
+Mirador Azul|Punto panorámico con vista al mar.|mirador.jpg
+Catarata Cristal|Cascada natural ideal para fotos.|catarata.jpg
+Centro Cultural|Museo con artesanías y actividades.|cultural.jpg
+Parque de Aventuras|Tirolinas, cuerdas y actividades extremas.|parque.jpg
