@@ -29,7 +29,7 @@ if (!isset($_SESSION['id_usuario']) || $_SESSION['rol_usuario'] !== 'administrad
         </div>
         <div class="user-info">
             <span class="user-name" id="userName"><?php echo $_SESSION['nombre_usuario']; ?></span>
-            <span class="user-rol admin">Administrador</span>
+            <span class="user-role admin">Administrador</span>
             <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
         </div>
     </nav>
