@@ -1,3 +1,5 @@
+
+
 * {
     margin: 0;
     padding: 0;
@@ -94,8 +96,13 @@ body {
     padding: 0 1.5rem;
 }
 
-/* Tarjeta de bienvenida */
-.welcome-card {
+.reserva-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Header */
+.reserva-header {
     background: white;
     padding: 2rem;
     border-radius: 10px;
@@ -104,153 +111,134 @@ body {
     text-align: center;
 }
 
-.welcome-card h2 {
+.reserva-header h2 {
     color: #333;
-
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
 }
 
-.welcome-card p {
+.reserva-header p {
     color: #666;
     font-size: 0.95rem;
 }
 
-/* Acciones del cliente */
-.client-actions {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    margin-bottom: 2rem;
-}
-
-.client-actions h3 {
-    color: #333;
+/* Mensajes */
+.message {
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
     margin-bottom: 1.5rem;
-    font-size: 1.3rem;
-    font-weight: 600;
-}
-
-.actions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.client-action-card {
-    background: #fafafa;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #eee;
-    transition: all 0.3s;
-}
-
-.client-action-card:hover {
-    border-color: #ff9124eb;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 145, 36, 0.1);
-}
-
-.client-action-card h4 {
-    color: #333;
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-}
-
-.client-action-card p {
-    color: #666;
     font-size: 0.9rem;
-    margin-bottom: 1.25rem;
-    line-height: 1.4;
+    animation: fadeIn 0.3s ease;
 }
 
-.client-btn {
+.message.success {
+    background: #f0fff4;
+    color: #2f855a;
+    border: 1px solid #c6f6d5;
+}
+
+.message.error {
+    background: #fff5f5;
+    color: #c53030;
+    border: 1px solid #fed7d7;
+}
+
+/* Formulario */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    background: #fafafa;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #ff9124eb;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(255, 145, 36, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #999;
+}
+
+.fecha-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Número personas */
+.personas-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-reservar {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 24px;
     background: #ff9124eb;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s;
-    width: 100%;
+    flex: 1;
+    text-align: center;
 }
 
-.client-btn:hover {
+.btn-reservar:hover {
     background: #e8821f;
     transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(255, 145, 36, 0.2);
 }
 
-/* Villas recomendadas */
-.recommended-villas {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.recommended-villas h3 {
-    color: #333;
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
-    font-weight: 600;
-}
-
-.villas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.villa-card {
-    background: #fafafa;
-    padding: 1.5rem;
-
-    border-radius: 8px;
-    border: 1px solid #eee;
-}
-
-.villa-card h4 {
-    color: #333;
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-}
-
-.villa-card p {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-.villa-price {
-    color: #ff9124eb;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.villa-btn {
+.btn-cancelar {
     display: inline-block;
-    padding: 10px 20px;
-    background: #ff9124eb;
-    color: white;
-    border: none;
+    padding: 12px 24px;
+    background: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s;
-    width: 100%;
-
+    flex: 1;
+    text-align: center;
 }
 
-.villa-btn:hover {
-    background: #e8821f;
+.btn-cancelar:hover {
+    background: #e9ecef;
+    border-color: #ccc;
+    transform: translateY(-1px);
 }
 
 /* Footer */
@@ -291,11 +279,16 @@ footer {
     transform: translateY(-2px);
 }
 
-.client-action-card a {
-    text-decoration: none;
-    display: block;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-
 
 @media (max-width: 768px) {
     .navbar {
@@ -314,29 +307,34 @@ footer {
         padding: 0 1rem;
     }
     
-    .welcome-card,
-    .client-actions,
-    .recommended-villas {
+    .reserva-header,
+    .form-actions {
         padding: 1.5rem;
     }
     
-    .actions-grid,
-    .villas-grid {
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .fecha-group,
+    .personas-group {
         grid-template-columns: 1fr;
+    }
+    
+    .reserva-header h2 {
+        font-size: 1.3rem;
     }
 }
 
-button:active {
+button:active,
+.btn-reservar:active,
+.btn-cancelar:active {
     transform: translateY(0);
 }
 
 button:focus,
-a:focus {
+a:focus,
+input:focus {
     outline: 2px solid #ff9124eb;
     outline-offset: 2px;
-}
-
-.client-action-card,
-.villa-card {
-    transition: all 0.2s ease;
 }

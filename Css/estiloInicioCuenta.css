@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #009371;
+    background-color: #ff9124eb;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -51,14 +51,14 @@ p {
 }
 
 .btn-primary {
-    background-color: #009371;
+    background-color: #ff9124eb;
     color: white;
 }
 
 .btn-secondary {
     background: #f8f9fa;
     color: #333;
-    border: 2px solid #009371;
+    border: 2px solid #ff9124eb;
 }
 
 .btn:hover {

@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #009371;
+    background-color: #ff9124eb;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -49,12 +49,12 @@ input {
 
 input:focus {
     outline: none;
-    border-color: #009371;
+    border-color: #ff9124eb;
 }
 
 button {
     padding: 12px;
-    background-color: #009371;
+    background-color: #ff9124eb;
     color: white;
     border: none;
     border-radius: 8px;
@@ -74,7 +74,7 @@ p {
 }
 
 a {
-    color: #009371;
+    color: #ff9124eb;
     text-decoration: none;
 }
 
