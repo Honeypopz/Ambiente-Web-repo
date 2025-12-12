@@ -1,18 +1,3 @@
-<?php
-session_start();
-// Español por defecto
-if (!isset($_SESSION['lang'])) {
-    $_SESSION['lang'] = 'es';
-}
-
-include __DIR__ . "/lang/" . $_SESSION['lang'] . ".php";
-
-if (!isset($_SESSION['id_usuario'])) {
-    header('Location: login.php');
-    exit;
-}
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -55,7 +40,7 @@ if (!isset($_SESSION['id_usuario'])) {
                 <p>Completa los datos para solicitar tu viaje</p>
             </div>
             
-            <form id="viajeForm">
+            <form id="viajeForm" method="post" action="ConfirmacionViaje.html">
                 <div class="form-group">
                     <label for="destino">Destino</label>
                     <input type="text" id="destino" name="destino" 
@@ -98,9 +83,8 @@ if (!isset($_SESSION['id_usuario'])) {
                 </div>
                 
                 <div class="form-actions">
-                    <button type="button" class="btn-solicitar" onclick="solicitarViaje()">
-                        Solicitar Viaje
-                    </button>
+                    <button type="submit" class="btn-solicitar">Solicitar Viaje</button>
+
                     <a href="dashboardCliente.php" class="btn-cancelar">
                         Cancelar
                     </a>
@@ -156,86 +140,6 @@ if (!isset($_SESSION['id_usuario'])) {
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Establecer fecha mínima como el mismo dia 
-            const fechaInput = document.getElementById('fecha');
-            if (fechaInput) {
-                const hoy = new Date().toISOString().split('T')[0];
-                fechaInput.min = hoy;
-                fechaInput.value = hoy;
-            }
-            
-            // Configurar hora mínima si la fecha es el mismo dia
-            const horaInput = document.getElementById('hora');
-            if (fechaInput && horaInput) {
-                fechaInput.addEventListener('change', function() {
-                    const hoy = new Date().toISOString().split('T')[0];
-                    const fechaSeleccionada = this.value;
-                    
-                    if (fechaSeleccionada === hoy) {
-                        const ahora = new Date();
-                        ahora.setHours(ahora.getHours() + 1);
-                        const horaMin = ahora.getHours().toString().padStart(2, '0') + ':' + 
-                                       ahora.getMinutes().toString().padStart(2, '0');
-                        horaInput.min = horaMin;
-                        
-                        if (horaInput.value < horaMin) {
-                            horaInput.value = horaMin;
-                        }
-                    } else {
-                        horaInput.removeAttribute('min');
-                        horaInput.value = '08:00';
-                    }
-                });
-                
-                // Inicializar hora mínima si hoy
-                const hoy = new Date().toISOString().split('T')[0];
-                if (fechaInput.value === hoy) {
-                    const ahora = new Date();
-                    ahora.setHours(ahora.getHours() + 1);
-                    const horaMin = ahora.getHours().toString().padStart(2, '0') + ':' + 
-                                   ahora.getMinutes().toString().padStart(2, '0');
-                    horaInput.min = horaMin;
-                    horaInput.value = horaMin;
-                }
-            }
-        });
-        
-        function solicitarViaje() {
-            const destino = document.getElementById('destino').value.trim();
-            const cantidad = document.getElementById('cantidad').value;
-            const vehiculo = document.getElementById('vehiculo').value;
-            const fecha = document.getElementById('fecha').value;
-            const hora = document.getElementById('hora').value;
-            
-            // Validaciones básicas
-            if (!destino) {
-                alert('Por favor ingresa el destino');
-                return;
-            }
-            
-            if (parseInt(cantidad) < 1) {
-                alert('La cantidad de personas debe ser al menos 1');
-                return;
-            }
-            
-            if (!vehiculo) {
-                alert('Por favor selecciona un tipo de vehículo');
-                return;
-            }
-            
-            if (!fecha) {
-                alert('Por favor selecciona la fecha del viaje');
-                return;
-            }
-            
-            if (!hora) {
-                alert('Por favor selecciona la hora de recogida');
-                return;
-            }
-            
-        }
-    </script>
+    
 </body>
 </html>
