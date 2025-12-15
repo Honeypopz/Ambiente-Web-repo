@@ -6,31 +6,33 @@
 }
 
 body {
-    background-color: #009371;
+    background: linear-gradient(135deg, #ff9124eb 0%, #ffa94d 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 
 .contenedor {
     width: 100%;
-    max-width: 450px;
-    padding: 20px;
+    max-width: 400px;
 }
 
 .form-box {
     background: white;
-    padding: 2.5rem;
-    border-radius: 15px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 145, 36, 0.1);
 }
 
 h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     color: #333;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 form {
@@ -41,58 +43,79 @@ form {
 
 input {
     padding: 12px 15px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    background: #fafafa;
 }
 
 input:focus {
     outline: none;
-    border-color: #009371;
+    border-color: #ff9124eb;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(255, 145, 36, 0.1);
+}
+
+input::placeholder {
+    color: #999;
 }
 
 button {
     padding: 12px;
-    background-color: #009371;
+    background: #ff9124eb;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
     font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: all 0.3s;
+    margin-top: 0.5rem;
 }
 
 button:hover {
-    transform: translateY(-2px);
+    background: #e8821f;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(255, 145, 36, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 p {
     text-align: center;
     margin-top: 1rem;
     color: #666;
+    font-size: 0.9rem;
 }
 
 a {
-    color: #009371;
+    color: #ff9124eb;
     text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
 }
 
 a:hover {
+    color: #e8821f;
     text-decoration: underline;
 }
 
 .message {
-    padding: 10px;
-    border-radius: 5px;
+    padding: 12px;
+    border-radius: 6px;
     text-align: center;
     margin-top: 1rem;
+    font-size: 0.9rem;
+    animation: fadeIn 0.3s ease;
 }
 
 .message.exito {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background: #f0fff4;
+    color: #2f855a;
+    border: 1px solid #c6f6d5;
 }
 
 .message.error {
@@ -103,4 +126,84 @@ a:hover {
 .form-select {
     margin-top: 1rem;
     
+    background: #fff5f5;
+    color: #c53030;
+    border: 1px solid #fed7d7;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .contenedor {
+        max-width: 100%;
+    }
+    
+    .form-box {
+        padding: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    input, button {
+        padding: 10px 12px;
+    }
+}
+
+/* Efectos adicionales para mejor UX */
+input:invalid {
+    border-color: #feb2b2;
+}
+
+input:valid {
+    border-color: #9ae6b4;
+}
+
+/* Loading state para botón */
+button.loading {
+    position: relative;
+    color: transparent;
+}
+
+button.loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Placeholder styling */
+input::-webkit-input-placeholder {
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: #ddd;
 }

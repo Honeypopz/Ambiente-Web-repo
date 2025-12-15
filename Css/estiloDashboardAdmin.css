@@ -11,7 +11,7 @@ body {
 }
 
 .navbar {
-    background-color: #b05d09;
+    background-color: #ff9124eb;
     padding: 1rem 2rem;
     color: white;
     display: flex;
@@ -42,7 +42,7 @@ body {
 }
 
 .user-role.admin {
-    background: #b05d09;
+    background: #ff9124eb;
     color: #212529;
     padding: 4px 12px;
     border-radius: 20px;
@@ -114,7 +114,7 @@ body {
 .stat-number {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #b05d09;
+    color: #ff9124eb;
     margin-bottom: 0.5rem;
 }
 
@@ -160,7 +160,7 @@ body {
 
 .action-btn {
     padding: 10px 25px;
-    background-color: #b05d09;
+    background-color: #ff9124eb;
     color: white;
     border: none;
     border-radius: 8px;

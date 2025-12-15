@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -20,6 +21,7 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
 }
 
 .nav-brand h1 {
@@ -90,167 +92,150 @@ body {
 
 .container {
     max-width: 1200px;
-    margin: 2rem auto;
+    margin: 0 auto;
     padding: 0 1.5rem;
 }
 
-/* Tarjeta de bienvenida */
-.welcome-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    margin-bottom: 2rem;
+/* Header */
+.lugares-header {
     text-align: center;
+    margin-bottom: 2.5rem;
 }
 
-.welcome-card h2 {
+.lugares-header h1 {
     color: #333;
-
     margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-}
-
-.welcome-card p {
-    color: #666;
-    font-size: 0.95rem;
-}
-
-/* Acciones del cliente */
-.client-actions {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    margin-bottom: 2rem;
-}
-
-.client-actions h3 {
-    color: #333;
-    margin-bottom: 1.5rem;
-    font-size: 1.3rem;
+    font-size: 2rem;
     font-weight: 600;
 }
 
-.actions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.client-action-card {
-    background: #fafafa;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #eee;
-    transition: all 0.3s;
-}
-
-.client-action-card:hover {
-    border-color: #ff9124eb;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 145, 36, 0.1);
-}
-
-.client-action-card h4 {
-    color: #333;
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-}
-
-.client-action-card p {
+.lugares-header p {
     color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 1.25rem;
-    line-height: 1.4;
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-.client-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #ff9124eb;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
+.lugares-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.lugar-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     transition: all 0.3s;
+    border: 1px solid #eee;
+}
+
+.lugar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+}
+
+.lugar-img {
     width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
 }
 
-.client-btn:hover {
-    background: #e8821f;
-    transform: translateY(-1px);
+.lugar-content {
+    padding: 1.5rem;
 }
 
-/* Villas recomendadas */
-.recommended-villas {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
-
-.recommended-villas h3 {
+.lugar-content h3 {
     color: #333;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     font-size: 1.3rem;
     font-weight: 600;
 }
 
-.villas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.villa-card {
-    background: #fafafa;
-    padding: 1.5rem;
-
-    border-radius: 8px;
-    border: 1px solid #eee;
-}
-
-.villa-card h4 {
-    color: #333;
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-}
-
-.villa-card p {
+.lugar-content p {
     color: #666;
-    font-size: 0.9rem;
     margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
-.villa-price {
+.lugar-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.lugar-distancia {
     color: #ff9124eb;
-    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    font-size: 0.95rem;
 }
 
-.villa-btn {
+.lugar-precio {
+    color: #2ecc71;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.btn-visitar {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 12px 24px;
     background: #ff9124eb;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s;
     width: 100%;
-
+    text-align: center;
+    margin-top: 0.5rem;
 }
 
-.villa-btn:hover {
+.btn-visitar:hover {
     background: #e8821f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 145, 36, 0.2);
+}
+
+.btn-visitar:active {
+    transform: translateY(0);
+}
+
+.back-link {
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #ff9124eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background: #e8821f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 145, 36, 0.2);
+}
+
+.btn-back:active {
+    transform: translateY(0);
 }
 
 /* Footer */
@@ -291,18 +276,13 @@ footer {
     transform: translateY(-2px);
 }
 
-.client-action-card a {
-    text-decoration: none;
-    display: block;
-}
-
-
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
         padding: 1rem;
         text-align: center;
         gap: 1rem;
+        margin-bottom: 1.5rem;
     }
     
     .user-info {
@@ -314,29 +294,61 @@ footer {
         padding: 0 1rem;
     }
     
-    .welcome-card,
-    .client-actions,
-    .recommended-villas {
-        padding: 1.5rem;
+    .lugares-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
     
-    .actions-grid,
-    .villas-grid {
-        grid-template-columns: 1fr;
+    .lugares-header h1 {
+        font-size: 1.5rem;
     }
-}
-
-button:active {
-    transform: translateY(0);
+    
+    .lugar-img {
+        height: 180px;
+    }
+    
+    .btn-visitar,
+    .btn-back {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
 }
 
 button:focus,
-a:focus {
+a:focus,
+.btn-visitar:focus,
+.btn-back:focus {
     outline: 2px solid #ff9124eb;
     outline-offset: 2px;
 }
 
-.client-action-card,
-.villa-card {
-    transition: all 0.2s ease;
+.btn-visitar,
+.btn-back {
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+
+.btn-cancelar {
+    padding: 12px 24px;
+    background: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.btn-cancelar:hover {
+    background: #e9ecef;
+    border-color: #ccc;
+    transform: translateY(-2px);
+}
+
+.btn-cancelar:active {
+    transform: translateY(0);
 }
