@@ -1,3 +1,5 @@
+
+
 * {
     margin: 0;
     padding: 0;
@@ -88,14 +90,20 @@ body {
     background: rgba(255, 255, 255, 0.25);
 }
 
+/* Contenedor principal */
 .container {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 2rem auto;
     padding: 0 1.5rem;
 }
 
-/* Tarjeta de bienvenida */
-.welcome-card {
+.viaje-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Header */
+.viaje-header {
     background: white;
     padding: 2rem;
     border-radius: 10px;
@@ -104,153 +112,156 @@ body {
     text-align: center;
 }
 
-.welcome-card h2 {
+.viaje-header h2 {
     color: #333;
-
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
 }
 
-.welcome-card p {
+.viaje-header p {
     color: #666;
     font-size: 0.95rem;
 }
 
-/* Acciones del cliente */
-.client-actions {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    margin-bottom: 2rem;
-}
-
-.client-actions h3 {
-    color: #333;
+/* Formulario */
+.form-group {
     margin-bottom: 1.5rem;
-    font-size: 1.3rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
     font-weight: 600;
-}
-
-.actions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.client-action-card {
-    background: #fafafa;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #eee;
-    transition: all 0.3s;
-}
-
-.client-action-card:hover {
-    border-color: #ff9124eb;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 145, 36, 0.1);
-}
-
-.client-action-card h4 {
     color: #333;
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
 }
 
-.client-action-card p {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 1.25rem;
-    line-height: 1.4;
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    background: #fafafa;
 }
 
-.client-btn {
-    display: inline-block;
-    padding: 10px 20px;
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #ff9124eb;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(255, 145, 36, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #999;
+}
+
+/* Fecha y hora */
+.fecha-hora-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Textarea */
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+}
+
+/* Botones */
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+}
+
+.btn-solicitar {
+    padding: 12px 24px;
     background: #ff9124eb;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
-    text-decoration: none;
+    flex: 1;
     transition: all 0.3s;
-    width: 100%;
 }
 
-.client-btn:hover {
+.btn-solicitar:hover {
     background: #e8821f;
     transform: translateY(-1px);
 }
 
-/* Villas recomendadas */
-.recommended-villas {
+.btn-cancelar {
+    padding: 12px 24px;
+    background: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    flex: 1;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.btn-cancelar:hover {
+    background: #e9ecef;
+    border-color: #ccc;
+    transform: translateY(-1px);
+}
+
+/* Información de vehículos */
+.info-conductores {
     background: white;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
 
-.recommended-villas h3 {
+.info-conductores h3 {
     color: #333;
     margin-bottom: 1.5rem;
     font-size: 1.3rem;
-    font-weight: 600;
+    text-align: center;
 }
 
-.villas-grid {
+.conductores-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
 }
 
-.villa-card {
+.conductor-card {
     background: #fafafa;
     padding: 1.5rem;
-
     border-radius: 8px;
     border: 1px solid #eee;
+    text-align: center;
 }
 
-.villa-card h4 {
+.conductor-card h4 {
     color: #333;
     margin-bottom: 0.75rem;
     font-size: 1.1rem;
 }
 
-.villa-card p {
+.conductor-card p {
     color: #666;
     font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-.villa-price {
-    color: #ff9124eb;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.villa-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #ff9124eb;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s;
-    width: 100%;
-
-}
-
-.villa-btn:hover {
-    background: #e8821f;
+    margin-bottom: 0.5rem;
 }
 
 /* Footer */
@@ -291,12 +302,7 @@ footer {
     transform: translateY(-2px);
 }
 
-.client-action-card a {
-    text-decoration: none;
-    display: block;
-}
-
-
+/* Responsive */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -314,29 +320,20 @@ footer {
         padding: 0 1rem;
     }
     
-    .welcome-card,
-    .client-actions,
-    .recommended-villas {
+    .viaje-header,
+    .info-conductores {
         padding: 1.5rem;
     }
     
-    .actions-grid,
-    .villas-grid {
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .fecha-hora-group {
         grid-template-columns: 1fr;
     }
-}
-
-button:active {
-    transform: translateY(0);
-}
-
-button:focus,
-a:focus {
-    outline: 2px solid #ff9124eb;
-    outline-offset: 2px;
-}
-
-.client-action-card,
-.villa-card {
-    transition: all 0.2s ease;
+    
+    .conductores-grid {
+        grid-template-columns: 1fr;
+    }
 }

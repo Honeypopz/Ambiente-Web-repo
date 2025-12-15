@@ -11,7 +11,7 @@ body {
 }
 
 .navbar {
-    background-color: #009371;
+    background-color: #ff9124eb;
     padding: 1rem 2rem;
     color: white;
     display: flex;
@@ -55,10 +55,10 @@ body {
     flex-direction: column;
 }
 
-/* Responsive image box */
+
 .media-thumb {
     width: 100%;
-    aspect-ratio: 16 / 9; /* keeps a consistent aspect on modern browsers */
+    aspect-ratio: 16 / 9; 
     overflow: hidden;
     display: block;
     background: #ddd;
@@ -66,7 +66,7 @@ body {
 .media-thumb img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* fill and crop as necessary */
+    object-fit: cover; 
     display: block;
 }
 
@@ -80,13 +80,13 @@ body {
     .media-thumb { aspect-ratio: 16 / 9; }
 }
 
-/* Fallback for browsers without aspect-ratio support */
+
 @supports not (aspect-ratio: 1/1) {
     .media-thumb { height: 200px; }
     .media-thumb img { height: 100%; width: 100%; object-fit: cover; }
 }
 .footer-content {
-    background-color: #009371;
+    background-color: #ff9124eb;
     color: white;
     text-align: center;
     padding: 1rem 0;
@@ -100,8 +100,8 @@ body {
     vertical-align: middle;
 }
 .footer-links a {
-    color: white; /* ensure icons inherit white color */
-    margin: 0 6px; /* spacing around links */
+    color: white; 
+    margin: 0 6px; 
     display: inline-block;
     text-decoration: none;
 }
@@ -136,5 +136,5 @@ body {
 
 .media-gallery .media-item:hover {
     transform: translateY(-5px);
-    box-shadow: 2px 2px 3px #009371;
+    box-shadow: 2px 2px 3px #ff9124eb;
 }

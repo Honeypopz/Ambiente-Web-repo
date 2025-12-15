@@ -1,23 +1,17 @@
 
 <?php
 session_start();
-
 // Español por defecto
 if (!isset($_SESSION['lang'])) {
     $_SESSION['lang'] = 'es';
 }
 
-include __DIR__ . "/../lang/" . $_SESSION['lang'] . ".php";
+include __DIR__ . "/lang/" . $_SESSION['lang'] . ".php";
 
 if (!isset($_SESSION['id_usuario'])) {
-    header("Location: ../login.php");
+    header('Location: login.php');
     exit;
 }
-
-require_once "lugaresController.php";
-
-$controller = new LugaresController();
-$lugares = $controller->obtenerLugares();
 ?>
 
 <!DOCTYPE html>
@@ -25,17 +19,16 @@ $lugares = $controller->obtenerLugares();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lugares de Interés - Villas Brenes</title>
+    <title>Notificaciones - Villas Brenes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../Css/estiloLugares.css">
+    <link rel="stylesheet" href="Css/estiloNotificaciones.css">
 </head>
-
 <body>
-    <!-- Navbar -->
+
     <nav class="navbar">
         <div class="nav-brand">
             <h1>Villas Brenes</h1>
-            <span class="subtitle">Lugares de Interés</span>
+            <span class="subtitle">Mis Notificaciones</span>
         </div>
         <div class="user-info">
             <span class="user-name"><?php echo $_SESSION['nombre_usuario']; ?></span>
@@ -43,51 +36,52 @@ $lugares = $controller->obtenerLugares();
             <!-- Selector de idioma -->
             <div class="language-selector">
                 <?php if ($_SESSION['lang'] == 'es'): ?>
-                    <a href="../CambioIdioma.php?lang=en">
+                    <a href="CambioIdioma.php?lang=en">
                         <i class="bi bi-translate"></i> English
                     </a>
                 <?php else: ?>
-                    <a href="../CambioIdioma.php?lang=es">
+                    <a href="CambioIdioma.php?lang=es">
                         <i class="bi bi-translate"></i> Español
                     </a>
                 <?php endif; ?>
             </div>
-            <a href="../logout.php" class="btn-logout">Cerrar Sesión</a>
+            <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
         </div>
     </nav>
 
     <div class="container">
-  
-        <div class="lugares-header">
-            <h1>Lugares de Interés</h1>
-            <p>Explora sitios recomendados cerca de Villas Brenes</p>
+        <div class="notifications-header">
+            <h2>Mis Notificaciones</h2>
+            <p>Historial de tus actividades y reservas</p>
         </div>
-
-
-        <div class="lugares-grid">
-            <?php foreach ($lugares as $l): ?>
-                <div class="lugar-card">
-                    <?php if (!empty($l['imagen'])): ?>
-                        <img src="../<?php echo $l['imagen']; ?>" 
-                             alt="<?php echo htmlspecialchars($l['nombre']); ?>" 
-                             class="lugar-img">
-                    <?php else: ?>
-                        <div class="lugar-img" style="background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
-                            <i class="bi bi-image" style="font-size: 3rem; color: #666;"></i>
-                        </div>
-                    <?php endif; ?>
-                    <div class="lugar-content">
-                        <h3><?php echo htmlspecialchars($l['nombre']); ?></h3>
-                        <p><?php echo htmlspecialchars($l['descripcion']); ?></p>
-                        <a href="../RegistroViaje.php" class="btn-visitar">Solicitar viaje</a>
-                    </div>
+        
+        <div class="notifications-list">
+            <!-- Notificación de ejemplo -->
+            <div class="notification-card">
+                <div class="notification-icon">
+                    <i class="bi bi-calendar-check"></i>
                 </div>
-            <?php endforeach; ?>
-        </div>
+                <div class="notification-content">
+                    <h3>Reserva Confirmada</h3>
+                    <p>Tu reserva en "Casa del Cangrejo" ha sido confirmada para el 15-20 de Diciembre, 2024.</p>
+                    <span class="notification-time">15 de Diciembre, 2024 - 14:30</span>
+                </div>
+            </div>
+            
 
-        <!-- Enlace para volver -->
+        </div>
+        
+
+        <div class="notifications-empty" style="<?php echo (false) ? 'display: block;' : 'display: none;' ?>">
+            <div class="empty-icon">
+                <i class="bi bi-bell-slash"></i>
+            </div>
+            <h3>No hay notificaciones</h3>
+            <p>Cuando tengas nuevas notificaciones, aparecerán aquí.</p>
+        </div>
+        
         <div class="back-link">
-            <a href="../dashboardCliente.php" class="btn-back">
+            <a href="dashboardCliente.php" class="btn-back">
                 Volver
             </a>
         </div>
@@ -113,5 +107,19 @@ $lugares = $controller->obtenerLugares();
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const notificationsList = document.querySelector('.notifications-list');
+            const emptyState = document.querySelector('.notifications-empty');
+            
+            // Verificar si hay notificaciones
+            if (notificationsList && notificationsList.children.length === 0) {
+                notificationsList.style.display = 'none';
+                emptyState.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>

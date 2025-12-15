@@ -21,7 +21,7 @@ CREATE TABLE reservas (
     niños INT NOT NULL,
     habitacion INT NOT NULL,
     email VARCHAR(100) NOT NULL
-    FOREING KEY (nombre_Reservante) REFERENCES usuarios (nombre)
+    FOREIGN KEY (nombre_Reservante) REFERENCES usuarios (nombre)
 );
 
 --tabla viaje--
@@ -37,7 +37,7 @@ CREATE TABLE viaje(
 --tabla conductor--
 CREATE TABLE conductor(
     nombre_conductor VARCHAR(50) PRIMARY KEY,
-    id_conductor int AUTO_INCREMENT,
+    id_conductor int,
     vehiculo VARCHAR(50),
     contacto INT NOT NULL,
 );
