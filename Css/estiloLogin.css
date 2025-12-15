@@ -119,6 +119,13 @@ a:hover {
 }
 
 .message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.form-select {
+    margin-top: 1rem;
+    
     background: #fff5f5;
     color: #c53030;
     border: 1px solid #fed7d7;
