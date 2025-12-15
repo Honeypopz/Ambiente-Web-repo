@@ -115,7 +115,7 @@ if (!isset($_SESSION['id_usuario'])) {
                     <h4>Casa del cangrejo</h4>
                     <p>4 personas - Piscina - WiFi</p>
                     <div class="villa-price">₡85,000/noche</div>
-                    <button class="villa-btn">Reservar</button>
+                    <a class="villa-btn" href="ReservaEstadia.php">Reservar</a>
                 </div>
             </div>
         </div>

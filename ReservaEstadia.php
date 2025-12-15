@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,26 +10,85 @@
 </head>
 
 <body>
+    <?php
+        session_start();
+        require_once __DIR__ . '/configuracion/conexionBD.php';
+        require_once 'confirmaciones.php';
+
+        $database = new BaseDeDatos();
+        $pdo = $database->obtenerConexion();
+
+        if (isset($_POST['crear_reserva'])) {
+
+            
+            $usuarioId = (int) $_SESSION['id_usuario'];
+
+            $nombre        = $_POST['nombre'];
+            $fechaEntrada  = $_POST['fecha_entrada'];
+            $fechaSalida   = $_POST['fecha_salida'];
+            $personas      = (int) $_POST['personas'];
+            $ninos         = (int) $_POST['ninos'];
+            $habitaciones  = (int) $_POST['hab'];
+
+            // reserva a la bd
+            $sql = "
+                INSERT INTO reservas
+                (usuario_id, reservation_date, status, email_sent)
+                VALUES (?, ?, 'COMPLETED', 0)
+            ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                $usuarioId,
+                $fechaEntrada
+            ]);
+
+            //id de la ultima reserva
+            $reservaId = $pdo->lastInsertId();
+
+            //join para sacar email
+            $sql = "
+                SELECT u.email
+                FROM reservas r
+                JOIN usuarios u ON r.usuario_id = u.id
+                WHERE r.id = ?
+            ";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$reservaId]);
+            $email = $stmt->fetchColumn();
+
+            // email de confirmacion
+            if ($email) {
+                notificarReservaEstadia($email, $reservaId);
+
+                // email enviado en la bd
+                $sql = "UPDATE reservas SET email_sent = 1 WHERE id = ?";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$reservaId]);
+            }
+
+            echo "Reserva creada y correo enviado correctamente.";
+        }
+    ?>
+
     <div class="contenedor">
         <div class="form-box" id="reservaViaje">
-            <form id="viajeForm" name="Reserva" method="post" action="Estadia.php">
+            <form method="post">
                 <h2>Reserva tu Estadía</h2>
-                <input type="text" name="Nombre" id="nombreR" placeholder="Nombre Reservante" required>
-                <input type="date" value="2025-11-01" min="2025-11-30" max="2026-01-31" name="Fecha de entrada"
-                    id="fechaEntrada" placeholder="FechaEntrada" required>
-                <input type="date" value="2025-11-01" min="2025-11-30" max="2026-01-31" name="Fecha de salida"
-                    id="fechaSalida" placeholder="FechaSalida" required>
-                <input type="number" name="personas" id="adultos" placeholder="adultos" value="1" required>
-                <input type="number" name="ninos" id="ninos" placeholder="Niños" value="0" required>
-                <input type="number" name="hab" id="cuartos" placeholder="Cantidad de habitaciones" required>
-                <input type="email" name="email" id="correo" placeholder="Correo electrónico" required>
-                <button type="button" id="enviar" onclick="reservar()">Reservar</button>
+                <input type="text" name="nombre" placeholder="Nombre Reservante" required>
+
+                <input type="date" name="fecha_entrada" required>
+                <input type="date" name="fecha_salida" required>
+
+                <input type="number" name="personas" value="1" required>
+                <input type="number" name="ninos" value="0" required>
+                <input type="number" name="hab" required>
+                <button type="submit" name="crear_reserva">Reservar</button>
             </form>
             <div id="message" class="message"></div>
         </div>
     </div>
-
-    <script src="script.js"></script>
 </body>
 
 </html>
