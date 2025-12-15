@@ -68,11 +68,11 @@ if (!isset($_SESSION['id_usuario'])) {
                     </a>
                 </div>
                 
-                <!-- Editar Reserva -->
+                <!-- Gestionar Reserva -->
                 <div class="client-action-card">
-                    <h4>Editar Reserva</h4>
+                    <h4>Gestionar Reservas</h4>
                     <p>Modifica o cancela tus reservas existentes</p>
-                    <a href="EditarReserva.php">
+                    <a href="GestionarReserva.php">
                         <button class="client-btn">Gestionar reservas</button>
                     </a>
                 </div>
