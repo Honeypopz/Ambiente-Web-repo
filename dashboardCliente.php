@@ -81,7 +81,7 @@ if (!isset($_SESSION['id_usuario'])) {
                 <div class="client-action-card">
                     <h4>Solicitar Viaje</h4>
                     <p>Solicita transporte para movilizarte</p>
-                    <a href="RegistroViaje.php">
+                    <a href="RegistroViaje.html">
                         <button class="client-btn">Solicitar Transporte</button>
                     </a>
                 </div>
