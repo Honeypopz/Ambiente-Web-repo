@@ -1,4 +1,5 @@
 
+
 <?php
 session_start();
 // Español por defecto
@@ -13,25 +14,26 @@ if (!isset($_SESSION['id_usuario'])) {
     exit;
 }
 
-// Procesar formulario al enviar
+//Proceso de formulario
 $success = false;
 $errores = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Conectar a la base de datos
+    //conexion bd
     $conexion = new mysqli("localhost", "root", "", "villasBrenes");
     
     if (!$conexion->connect_error) {
-        // agarrar datos de formulario
+        //Obtener datos formulario
         $nombreReservante = trim($_POST['nombre']);
         $fechaEntrada = $_POST['fecha_entrada'];
         $fechaSalida = $_POST['fecha_salida'];
         $adultos = intval($_POST['adultos']);
-        $ninos = intval($_POST['ninos']);
+        $ninos = intval($_POST['ninos']); 
         $habitacion = intval($_POST['habitacion']);
         $email = trim($_POST['email']);
+        $id_usuario = $_SESSION['id_usuario'];
         
-        // Validaciones
+        //Validaciones
         if (empty($nombreReservante)) {
             $errores[] = "El nombre del reservante es obligatorio";
         }
@@ -58,16 +60,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errores[] = "El correo electrónico no es válido";
         }
         
-        // Insertar a bd si no hay errores
+        //Insertar en bd
         if (empty($errores)) {
-            $stmt = $conexion->prepare("INSERT INTO reservas (nombre_Reservante, fechaEntrada, fechaSalida, adultos, niños, habitacion, email) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssiiis", $nombreReservante, $fechaEntrada, $fechaSalida, $adultos, $ninos, $habitacion, $email);
+            $stmt = $conexion->prepare("INSERT INTO reservas (id_usuario, nombre_Reservante, fechaEntrada, fechaSalida, adultos, ninos, habitacion, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("isssiiis", $id_usuario, $nombreReservante, $fechaEntrada, $fechaSalida, $adultos, $ninos, $habitacion, $email);
             
             if ($stmt->execute()) {
                 $success = true;
+                //Limpiar
+                $_POST = array();
             } else {
-                $errores[] = "Error al guardar la reserva en la base de datos";
+                $errores[] = "Error al guardar la reserva en la base de datos: " . $conexion->error;
             }
+            
+            $stmt->close();
         }
         
         $conexion->close();
@@ -123,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             <?php if ($success): ?>
             <div class="message success" id="successMessage">
-                Reserva realizada correctamente
+                ¡Reserva realizada correctamente! Se ha guardado en el sistema.
             </div>
             <?php endif; ?>
             
@@ -221,13 +227,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Ocultar mensajes después de 5 segundos
             setTimeout(() => {
                 const messages = document.querySelectorAll('.message');
                 messages.forEach(msg => msg.style.display = 'none');
             }, 5000);
             
-            // Validaciones
+            //limpiar
+            <?php if ($success): ?>
+                document.getElementById('reservaForm').reset();
+            <?php endif; ?>
+            
+            //Validaciones
             const form = document.getElementById('reservaForm');
             if (form) {
                 form.addEventListener('submit', function(e) {
@@ -273,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 });
             }
             
-            // Fecha de salida minima ante la fecha de entrada
+            //Fecha de salida minima ante la fecha de entrada
             const fechaEntrada = document.getElementById('fecha_entrada');
             const fechaSalida = document.getElementById('fecha_salida');
             

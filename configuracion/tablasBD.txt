@@ -10,18 +10,19 @@ CREATE TABLE usuarios (
     PRIMARY KEY (id)
 );
 
---tabla reservas--
 
+----TABLA RESERVAS CORRECTA----
 CREATE TABLE reservas (
     id_reserva INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
     nombre_Reservante VARCHAR(100) NOT NULL,
     fechaEntrada DATE NOT NULL,
     fechaSalida DATE NOT NULL,
     adultos INT NOT NULL,
     niños INT NOT NULL,
     habitacion INT NOT NULL,
-    email VARCHAR(100) NOT NULL
-    FOREIGN KEY (nombre_Reservante) REFERENCES usuarios (nombre)
+    email VARCHAR(100) NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios (id) 
 );
 
 --tabla viaje--

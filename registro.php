@@ -42,7 +42,7 @@
                         echo '<div class="message error">El formato del email no es válido</div>';
                     } else {
 
-                        // Verificar existencia de email
+                        //Verificar existencia de email
                         $check_email = $conexion->prepare("SELECT id FROM usuarios WHERE email = ?");
                         $check_email->bind_param("s", $email);
                         $check_email->execute();
@@ -51,7 +51,7 @@
                         if ($check_email->num_rows > 0) {
                             echo '<div class="message error">El email ya está registrado</div>';
                         } else {
-                            // Registrar usuario
+                            //Registrar usuario
                             $contraseña_hash = password_hash($contraseña, PASSWORD_DEFAULT);
                             $rol = 'cliente';
                             
@@ -115,11 +115,11 @@ const translations = {
 document.getElementById("language-selector").addEventListener("change", function () {
     const lang = this.value;
 
-    // Cambia textos normales
+    
     document.querySelectorAll("[data-key]").forEach(element => {
         const key = element.getAttribute("data-key");
 
-        // Si es placeholder, se cambia distinto
+
         if (element.placeholder !== undefined && element.hasAttribute("placeholder")) {
             element.placeholder = translations[lang][key];
         } else {
