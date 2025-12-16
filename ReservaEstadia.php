@@ -2,6 +2,7 @@
 
 <?php
 session_start();
+require_once 'confirmaciones.php';
 // Español por defecto
 if (!isset($_SESSION['lang'])) {
     $_SESSION['lang'] = 'es';
@@ -67,6 +68,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             if ($stmt->execute()) {
                 $success = true;
+                // Obtener el ID de la reserva recién creada
+                $reservaId = $conexion->insert_id;
+                // Enviar correo de confirmación
+                notificarReservaEstadia($email, $reservaId);
                 $_POST = array();
             } else {
                 $errores[] = "Error al guardar la reserva en la base de datos: " . $conexion->error;

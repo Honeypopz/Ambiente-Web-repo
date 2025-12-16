@@ -185,7 +185,7 @@ body {
 }
 
 .btn-solicitar {
-    padding: 12px 24px;
+    padding: 24px 48px;
     background: #ff9124eb;
     color: white;
     border: none;
@@ -336,4 +336,5 @@ footer {
     .conductores-grid {
         grid-template-columns: 1fr;
     }
+   
 }
