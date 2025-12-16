@@ -36,88 +36,31 @@ if (!isset($_SESSION['id_usuario']) || $_SESSION['rol_usuario'] !== 'administrad
 
     <div class="container">
         <div class="welcome-header">
-            <h2>Panel de Control Administrativo</h2>
-            <p>Gestiona todos los detalles desde el sistema</p>
-        </div>
-
-        <!--Resumen de datos-->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number" id="totalUsers">0</div>
-                <div class="stat-label">Usuarios Totales</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="totalRevenue">₡0</div>
-                <div class="stat-label">Ingresos Totales</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="activeBookings">0</div>
-                <div class="stat-label">Reservas Activas</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="satisfaction">98%</div>
-                <div class="stat-label">Satisfacción</div>
-            </div>
+            <h2>Panel de Visualización Administrativa</h2>
+            <p>Visualiza los detalles de los usuarios, reservas, solicitudes de viaje y conductores</p>
         </div>
 
         <!--Acciones de Administración-->
         <div class="admin-actions-grid">
             <div class="action-card">
-                <h3>Gestión de Usuarios</h3>
-                <p>Administra usuarios</p>
-                <button class="action-btn">Acceder</button>
+                <h3>Usuarios registrados</h3>
+                <p>Visualiza todos los usuarios que se encuentran en el sistema</p>
+                <a href="VisualizarUsuarios.php" class="action-btn">Acceder</a>
             </div>
             
             <div class="action-card">
-                <h3>Gestión de Propiedades</h3>
-                <p>Administra villas, habitaciones y servicios</p>
-                <button class="action-btn">Acceder</button>
+                <h3>Reservas realizadas</h3>
+                <p>Visualiza las reservas que han realizado los usuarios </p>
+                <a href="VisualizarReservas.php" class="action-btn">Acceder</a>
             </div>
-            
-            <div class="action-card">
-                <h3>Gestión de reservas</h3>
-                <p>Administra reservas de clientes</p>
-                <button class="action-btn">Acceder</button>
-            </div>
-            
-            <div class="action-card">
-                <h3>Reportes</h3>
-                <p>Genera reportes y estadísticas del negocio</p>
-                <button class="action-btn">Acceder</button>
-            </div>
-            
-            <div class="action-card">
-                <h3>Cambiar idioma</h3>
-                <p>Selecciona tu idioma preferido</p>
-                <button class="action-btn">Acceder</button>
-            </div>
-        </div>
 
-        <!-- Información Reciente -->
-        <div class="recent-activity">
-            <h3>Actividad Reciente</h3>
-            <div class="activity-list">
-                <div class="activity-item">
-                    <span class="activity-time">Hace 5 min</span>
-                    <span class="activity-text">Nuevo usuario registrado: Usuario de ejemplo</span>
-                </div>
-                <div class="activity-item">
-                    <span class="activity-time">Hace 15 min</span>
-                    <span class="activity-text">Reserva confirmada: Villa del cangrejo</span>
-                </div>
-                <div class="activity-item">
-                    <span class="activity-time">Hace 1 hora</span>
-                    <span class="activity-text">Pago procesado: ₡85,000</span>
-                </div>
+            <div class="action-card">
+                <h3>Viajes solicitados y conductores</h3>
+                <p>Visualiza los conductores de los vehiculos y las solicitudes de viajes</p>
+                <a href="VisualizarViajes.php" class="action-btn">Acceder</a>
             </div>
-        </div>
-    </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('totalUsers').textContent = '15';
-        });
-        
+    <script>       
     </script>
 </body>
 </html>

@@ -130,8 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form id="viajeForm" method="post" action="ConfirmacionViaje.php">
                 <div class="form-group">
                     <label for="destino">Destino</label>
-                    <input type="text" id="destino" name="destino" 
-                           placeholder="Ej: Playa Jacó, Aeropuerto, Monteverde" required>
+                    <input type="text" id="destino" name="destino"         
                 </div>
                 
                 <div class="form-group">
@@ -163,11 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label for="notas">Notas adicionales (opcional)</label>
-                    <textarea id="notas" name="notas" rows="3" 
-                              placeholder="Especificaciones especiales, puntos de referencia, etc."></textarea>
-                </div>
+
                 
                 <div class="form-actions">
                     <button type="submit" class="btn-solicitar">Solicitar Viaje</button>
