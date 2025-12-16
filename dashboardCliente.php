@@ -104,41 +104,18 @@ if (!isset($_SESSION['id_usuario'])) {
                     </a>
                 </div>
                 
-                <!-- Notificaciones -->
-                <div class="client-action-card">
-                    <h4>Notificaciones</h4>
-                    <p>Revisa tus alertas y mensajes importantes</p>
-                    <a href="Notificaciones.php">
-                        <button class="client-btn">Ver Notificaciones</button>
-                    </a>
-                </div>
+                
                 
                 <!-- Mi Perfil -->
                 <div class="client-action-card">
-                    <h4>Encuesta de satisfacción</h4>
-                    <p>Dinos luego de tu estadia que valoración nos das</p>
-                    <button class="client-btn">Ver Ofertas</button>
-                </div>
-            </div>
-        </div>
-
-        <!--Recomendaciones para cliente-->
-        <div class="recommended-villas">
-            <h3>Villas recomendadas para ti</h3>
-            <div class="villas-grid">
-                <div class="villa-card">
-                    <h4>Casa del cangrejo</h4>
-                    <p>4 personas - Piscina - WiFi</p>
-                    <div class="villa-price">₡85,000/noche</div>
-                    <a class="villa-btn" href="ReservaEstadia.php">Reservar</a>
                     <h4>Mi Perfil</h4>
                     <p>Actualiza tu información personal</p>
                     <a href="MiPerfil.php">
                         <button class="client-btn">Editar Perfil</button>
                     </a>
                 </div>
-                
-    </div>
+            </div>
+        </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

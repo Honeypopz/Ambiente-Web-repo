@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 // Español por defecto
@@ -12,12 +13,14 @@ if (!isset($_SESSION['id_usuario'])) {
     exit;
 }
 
-// Conectar a la base de datos
+//Conectar a bd
 $conexion = new mysqli("localhost", "root", "", "villasBrenes");
 $usuario = null;
+$mensaje = '';
+$tipo_mensaje = ''; 
 
 if (!$conexion->connect_error) {
-    // Obtener datos del usuario
+    //Obtener datos de usuario
     $stmt = $conexion->prepare("SELECT nombre, email FROM usuarios WHERE id = ?");
     $stmt->bind_param("i", $_SESSION['id_usuario']);
     $stmt->execute();
@@ -27,6 +30,72 @@ if (!$conexion->connect_error) {
         $usuario = $result->fetch_assoc();
     }
 }
+
+//Procesar actualizacion
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['actualizar_perfil'])) {
+    $id_usuario = $_SESSION['id_usuario'];
+    $nuevoNombre = trim($_POST['nombre']);
+    $nuevoEmail = trim($_POST['email']);
+    
+    //Validaciones
+    $errores = [];
+    
+    if (empty($nuevoNombre)) {
+        $errores[] = "El nombre completo es obligatorio";
+    }
+    
+    if (empty($nuevoEmail)) {
+        $errores[] = "El correo electrónico es obligatorio";
+    } elseif (!filter_var($nuevoEmail, FILTER_VALIDATE_EMAIL)) {
+        $errores[] = "El correo electrónico no es válido";
+    }
+    
+    //Verificar email
+    if (empty($errores)) {
+        $stmt = $conexion->prepare("SELECT id FROM usuarios WHERE email = ? AND id != ?");
+        $stmt->bind_param("si", $nuevoEmail, $id_usuario);
+        $stmt->execute();
+        $stmt->store_result();
+        
+        if ($stmt->num_rows > 0) {
+            $errores[] = "Este correo electrónico ya está registrado por otro usuario";
+        }
+        $stmt->close();
+    }
+    
+    //Actualizar perfil
+    if (empty($errores)) {
+        $stmt = $conexion->prepare("UPDATE usuarios SET nombre = ?, email = ? WHERE id = ?");
+        $stmt->bind_param("ssi", $nuevoNombre, $nuevoEmail, $id_usuario);
+        
+        if ($stmt->execute()) {
+            $mensaje = "Perfil actualizado correctamente";
+            $tipo_mensaje = "success";
+            
+            $_SESSION['nombre_usuario'] = $nuevoNombre;
+            $_SESSION['email_usuario'] = $nuevoEmail;
+            
+            $stmt = $conexion->prepare("SELECT nombre, email FROM usuarios WHERE id = ?");
+            $stmt->bind_param("i", $id_usuario);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows === 1) {
+                $usuario = $result->fetch_assoc();
+            }
+            
+            $stmt->close();
+        } else {
+            $mensaje = "Error al actualizar el perfil: " . $conexion->error;
+            $tipo_mensaje = "error";
+        }
+    } else {
+        $mensaje = implode('<br>', $errores);
+        $tipo_mensaje = "error";
+    }
+}
+
+$conexion->close();
 ?>
 
 <!DOCTYPE html>
@@ -71,51 +140,41 @@ if (!$conexion->connect_error) {
                     <i class="bi bi-person-circle"></i>
                 </div>
                 <h2>Mi Información Personal</h2>
-                <p>Actualiza tus datos de contacto</p>
+                <p>Actualiza tu nombre y correo establecidos</p>
             </div>
             
-            <?php if (isset($_GET['success'])): ?>
-            <div class="message success" id="successMessage">
-             Perfil actualizado correctamente
-            </div>
-            <?php endif; ?>
-            
-            <?php if (isset($_GET['error'])): ?>
-            <div class="message error" id="errorMessage">
-             Error al actualizar el perfil
+            <?php if ($mensaje): ?>
+            <div class="message <?php echo $tipo_mensaje; ?>" id="message">
+                <?php echo $mensaje; ?>
             </div>
             <?php endif; ?>
             
-            <form id="profileForm" method="POST" action="actualizarPerfil.php">
+            <form id="profileForm" method="POST" action="MiPerfil.php">
+                <input type="hidden" name="actualizar_perfil" value="1">
+                
                 <div class="form-group">
-                    <label for="nombre">
-                     Nombre completo
-                    </label>
+                    <label for="nombre">Nombre completo *</label>
                     <input type="text" id="nombre" name="nombre" 
                            value="<?php echo htmlspecialchars($usuario['nombre'] ?? ''); ?>" 
-                           required>
+                           required placeholder="Ingresa tu nombre completo">
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">
-                     Correo electrónico
-                    </label>
+                    <label for="email">Correo electrónico *</label>
                     <input type="email" id="email" name="email" 
                            value="<?php echo htmlspecialchars($usuario['email'] ?? ''); ?>" 
-                           required>
+                           required placeholder="ejemplo@correo.com">
                 </div>
                 
                 <div class="form-actions">
                     <button type="submit" class="btn-save">
-                     Guardar Cambios
+                        Guardar Cambios
                     </button>
                     <a href="dashboardCliente.php" class="btn-cancel">
-                     Cancelar
+                        Cancelar
                     </a>
                 </div>
             </form>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer>
@@ -140,23 +199,15 @@ if (!$conexion->connect_error) {
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
-            const successMessage = document.getElementById('successMessage');
-            const errorMessage = document.getElementById('errorMessage');
+            // Ocultar mensajes después de 5 segundos
+            setTimeout(() => {
+                const message = document.getElementById('message');
+                if (message) {
+                    message.style.display = 'none';
+                }
+            }, 5000);
             
-            if (successMessage) {
-                setTimeout(() => {
-                    successMessage.style.display = 'none';
-                }, 5000);
-            }
-            
-            if (errorMessage) {
-                setTimeout(() => {
-                    errorMessage.style.display = 'none';
-                }, 5000);
-            }
-            
-            // Validar del formulario
+            //Validar formulario
             const form = document.getElementById('profileForm');
             form.addEventListener('submit', function(e) {
                 const nombre = document.getElementById('nombre').value.trim();
@@ -164,19 +215,44 @@ if (!$conexion->connect_error) {
                 
                 if (!nombre || !email) {
                     e.preventDefault();
-                    alert('Completar todos los campos obligatorios');
+                    alert('Por favor completa todos los campos obligatorios');
                     return false;
                 }
                 
                 if (!validateEmail(email)) {
                     e.preventDefault();
-                    alert('Ingresar un correo electrónico válido');
+                    alert('Por favor ingresa un correo electrónico válido');
                     return false;
                 }
-                
+
                 return true;
             });
-   
+            
+            //Verificar cambios
+            const nombreInput = document.getElementById('nombre');
+            const emailInput = document.getElementById('email');
+            const btnGuardar = document.querySelector('.btn-save');
+            
+            let nombreOriginal = nombreInput.value;
+            let emailOriginal = emailInput.value;
+            
+            function checkChanges() {
+                const nombreChanged = nombreInput.value !== nombreOriginal;
+                const emailChanged = emailInput.value !== emailOriginal;
+                
+                if (nombreChanged || emailChanged) {
+                    btnGuardar.style.background = '#ff9124eb';
+                    btnGuardar.innerHTML = 'Guardar Cambios';
+                } else {
+                    btnGuardar.style.background = '#ccc';
+                    btnGuardar.innerHTML = 'Sin cambios';
+                }
+            }
+            
+            nombreInput.addEventListener('input', checkChanges);
+            emailInput.addEventListener('input', checkChanges);
+            
+            checkChanges();
         });
     </script>
 </body>
