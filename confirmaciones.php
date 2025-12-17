@@ -1,14 +1,11 @@
 
  <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
 
-require_once __DIR__ . '/vendor/autoload.php';
-include __DIR__ . "/lang/" . ($_SESSION['lang'] ?? 'es') . ".php";
+    require_once __DIR__ . '/vendor/autoload.php';
 
 function notificarReservaEstadia($email, $reservationId) {
-    global $lang;
-
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
@@ -19,24 +16,22 @@ function notificarReservaEstadia($email, $reservationId) {
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom('tt3948578@gmail.com', $lang['brand']);
+        $mail->setFrom('tt3948578@gmail.com', 'Villas Brenes');
         $mail->addAddress($email);
 
         $mail->isHTML(true);
-        $mail->Subject = $lang['mail_subject_reserva'];
-        $mail->Body    = sprintf($lang['mail_body_reserva'], $reservationId);
+        $mail->Subject = 'Confirmación de Reserva';
+        $mail->Body    = "Su reserva con ID $reservationId ha sido registrada correctamente.";
 
         $mail->send();
         return true;
     } catch (Exception $e) {
-        error_log("MAIL ERROR: " . $mail->ErrorInfo);
-        return false;
+    error_log("MAIL ERROR: " . $mail->ErrorInfo);
+    return false;
     }
 }
 
 function notificarReservaViaje($email, $viajeId, $destino, $fecha, $hora) {
-    global $lang;
-
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
@@ -47,18 +42,25 @@ function notificarReservaViaje($email, $viajeId, $destino, $fecha, $hora) {
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom('tt3948578@gmail.com', $lang['brand']);
+        $mail->setFrom('tt3948578@gmail.com', 'Villas Brenes');
         $mail->addAddress($email);
 
         $mail->isHTML(true);
-        $mail->Subject = $lang['mail_subject_viaje'];
-        $mail->Body    = sprintf($lang['mail_body_viaje'], $viajeId, $destino, $fecha, $hora);
+        $mail->Subject = 'Confirmación de Reserva';
+        $mail->Body    = "<h3>Solicitud de Viaje Confirmada</h3>
+            <p><strong>Viaje #$viajeId</strong></p>
+            <p><strong>Destino:</strong> $destino</p>
+            <p><strong>Fecha:</strong> $fecha</p>
+            <p><strong>Hora:</strong> $hora</p>
+        ";
 
         $mail->send();
         return true;
     } catch (Exception $e) {
-        error_log("MAIL ERROR: " . $mail->ErrorInfo);
-        return false;
+    error_log("MAIL ERROR: " . $mail->ErrorInfo);
+    return false;
     }
 }
-?>
+
+
+ ?>

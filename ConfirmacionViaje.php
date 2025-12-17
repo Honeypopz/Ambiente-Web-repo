@@ -21,7 +21,7 @@ $db = new BaseDeDatos();
 $conexion = $db->obtenerConexion();
 
 if (!$conexion) {
-    die($lang['error_bd']);
+    die("Error de conexión con la base de datos.");
 }
 
 // Obtener datos del formulario
@@ -56,30 +56,30 @@ if ($email) {
 ?>
 
 <!DOCTYPE html>
-<html lang="<?= $_SESSION['lang'] ?>">
-<head>
-    <meta charset="UTF-8">
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $lang['title_viaje_registrado'] ?> - <?= $lang['brand'] ?></title>
+    <title>Solicitud de Viaje Registrado- Villas Brenes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="Css/estiloRegistroViaje.css">
-</head>
-<body>
-    <div class="container">
-        <h1><?= $lang['title_viaje_registrado'] ?></h1>
+    </head>
+    <body>
+        <div class="container">
+    <h1>Solicitud de Viaje Registrada</h1>
 
-        <p><strong><?= $lang['label_destino'] ?>:</strong> <?= htmlspecialchars($destino) ?></p>
-        <p><strong><?= $lang['label_cantidad'] ?>:</strong> <?= htmlspecialchars($cantidad) ?></p>
-        <p><strong><?= $lang['label_vehiculo'] ?>:</strong> <?= htmlspecialchars($vehiculo) ?></p>
-        <p><strong><?= $lang['label_fecha'] ?>:</strong> <?= htmlspecialchars($fecha) ?></p>
-        <p><strong><?= $lang['label_hora'] ?>:</strong> <?= htmlspecialchars($hora) ?></p>
-        <p><strong><?= $lang['label_notas'] ?>:</strong> <?= nl2br(htmlspecialchars($notas)) ?></p>
+    <p><strong>Destino:</strong> <?= htmlspecialchars($destino) ?></p>
+    <p><strong>Cantidad de personas:</strong> <?= htmlspecialchars($cantidad) ?></p>
+    <p><strong>Vehículo:</strong> <?= htmlspecialchars($vehiculo) ?></p>
+    <p><strong>Fecha:</strong> <?= htmlspecialchars($fecha) ?></p>
+    <p><strong>Hora:</strong> <?= htmlspecialchars($hora) ?></p>
+    <p><strong>Notas:</strong> <?= nl2br(htmlspecialchars($notas)) ?></p>
 
-        <p><strong><?= $lang['label_conductor'] ?>:</strong> 
-            <?= $conductor ? htmlspecialchars($conductor) : $lang['no_disponible'] ?>
-        </p>
+    <p><strong>Conductor asignado:</strong> 
+        <?= $conductor ? htmlspecialchars($conductor) : "No disponible" ?>
+    </p>
 
-        <a href="dashboardCliente.php" class="btn-solicitar"><?= $lang['btn_volver_inicio'] ?></a>
-    </div>
-</body>
+    <a href="dashboardCliente.php" class="btn-solicitar">Volver al inicio</a>
+</div>
+    </body>
 </html>

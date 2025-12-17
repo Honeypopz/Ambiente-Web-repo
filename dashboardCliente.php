@@ -1,6 +1,6 @@
 <?php
 session_start();
-// Español por defecto
+//español por defecto
 if (!isset($_SESSION['lang'])) {
     $_SESSION['lang'] = 'es';
 }
@@ -13,11 +13,11 @@ if (!isset($_SESSION['id_usuario'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="<?= $_SESSION['lang'] ?>">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $lang['brand'] ?></title>
+    <title>Villas Brenes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="Css/estiloDashboardCliente.css">
 </head>
@@ -25,12 +25,12 @@ if (!isset($_SESSION['id_usuario'])) {
 <body>
     <nav class="navbar">
         <div class="nav-brand">
-            <h1><?= $lang['brand'] ?></h1>
-            <span class="subtitle"><?= $lang['subtitle_client'] ?></span>
+            <h1>Villas Brenes</h1>
+            <span class="subtitle">Mi Espacio Personal</span>
         </div>
         <div class="user-info">
-            <span class="user-name" id="userName"><?= $_SESSION['nombre_usuario']; ?></span>
-            <span class="user-role client"><?= $lang['role_client'] ?></span>
+            <span class="user-name" id="userName"><?php echo $_SESSION['nombre_usuario']; ?></span>
+            <span class="user-role client">CLIENTE</span>
             <!-- Selector de idioma -->
             <div class="language-selector" style="display: inline-block; margin-right: 15px;">
                 <?php if ($_SESSION['lang'] == 'es'): ?>
@@ -43,82 +43,90 @@ if (!isset($_SESSION['id_usuario'])) {
                     </a>
                 <?php endif; ?>
             </div>
-            <a href="logout.php" class="btn-logout"><?= $lang['btn_logout'] ?></a>
+            <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
         </div>
     </nav>
 
     <div class="container">
         <!--Mensaje de bienvenida-->
         <div class="welcome-card">
-            <h2><?= $lang['hello'] ?>, <span id="displayName"><?= $_SESSION['nombre_usuario']; ?></span></h2>
-            <p><?= $lang['welcome'] ?></p>
+            <h2>Hola, <span id="displayName"><?php echo $_SESSION['nombre_usuario']; ?></span></h2>
+            <p>Bienvenido a tu espacio personal en Villas Brenes</p>
         </div>
+
 
         <!--Acciones para cliente-->
         <div class="client-actions">
-            <h3><?= $lang['my_options'] ?></h3>
+            <h3>Mis Opciones</h3>
             <div class="actions-grid">
                 <!-- Realizar Reserva -->
                 <div class="client-action-card">
-                    <h4><?= $lang['action_reserva'] ?></h4>
-                    <p><?= $lang['desc_reserva'] ?></p>
+                    <h4>Realizar Reserva</h4>
+                    <p>Reserva tu estadía en nuestras villas</p>
                     <a href="ReservaEstadia.php">
-                        <button class="client-btn"><?= $lang['btn_reserva'] ?></button>
+                        <button class="client-btn">Realizar reserva</button>
                     </a>
                 </div>
                 
                 <!-- Gestionar Reserva -->
                 <div class="client-action-card">
-                    <h4><?= $lang['action_gestionar'] ?></h4>
-                    <p><?= $lang['desc_gestionar'] ?></p>
+                    <h4>Gestionar Reservas</h4>
+                    <p>Modifica o cancela tus reservas existentes</p>
                     <a href="GestionarReserva.php">
-                        <button class="client-btn"><?= $lang['btn_gestionar'] ?></button>
+                        <button class="client-btn">Gestionar reservas</button>
                     </a>
                 </div>
                 
                 <!-- Solicitar Viaje -->
                 <div class="client-action-card">
-                    <h4><?= $lang['action_viaje'] ?></h4>
-                    <p><?= $lang['desc_viaje'] ?></p>
+                    <h4>Solicitar Viaje</h4>
+                    <p>Solicita transporte para movilizarte</p>
                     <a href="RegistroViaje.php">
-                        <button class="client-btn"><?= $lang['btn_viaje'] ?></button>
+                        <button class="client-btn">Solicitar Transporte</button>
                     </a>
                 </div>
                 
                 <!-- Lugares de Interés -->
                 <div class="client-action-card">
-                    <h4><?= $lang['action_lugares'] ?></h4>
-                    <p><?= $lang['desc_lugares'] ?></p>
+                    <h4>Lugares de Interés</h4>
+                    <p>Descubre lugares atractivos en la zona</p>
                     <a href="LugaresInteres/LugaresInteres.php">
-                        <button class="client-btn"><?= $lang['btn_lugares'] ?></button>
+                        <button class="client-btn">Explorar Lugares</button>
                     </a>
                 </div>
 
                 <!-- Multimedia -->
                 <div class="client-action-card">
-                    <h4><?= $lang['action_multimedia'] ?></h4>
-                    <p><?= $lang['desc_multimedia'] ?></p>
+                    <h4>Multimedia</h4>
+                    <p>Visualiza imágenes de Villas Brenes</p>
                     <a href="multimedia.html">
-                        <button class="client-btn"><?= $lang['btn_multimedia'] ?></button>
+                        <button class="client-btn">Ver imágenes</button>
                     </a>
                 </div>
                 
+                
+                
                 <!-- Mi Perfil -->
                 <div class="client-action-card">
-                    <h4><?= $lang['action_perfil'] ?></h4>
-                    <p><?= $lang['desc_perfil'] ?></p>
+                    <h4>Mi Perfil</h4>
+                    <p>Actualiza tu información personal</p>
                     <a href="MiPerfil.php">
-                        <button class="client-btn"><?= $lang['btn_perfil'] ?></button>
+                        <button class="client-btn">Editar Perfil</button>
                     </a>
                 </div>
             </div>
         </div>
-    </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+        });
+    </script>
+    
     <!--footer con la informacion de contacto-->
     <footer>
         <div class="footer-content">
-            <p>&copy; 2024 <?= $lang['brand'] ?>. <?= $lang['rights_reserved'] ?></p>
+            <p>&copy; 2024 Villas Brenes. Todos los derechos reservados.</p>
             <div class="footer-links">
                 <a href="https://www.facebook.com/p/Villas-Brenes-61571505092179/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                     <i class="bi bi-facebook" aria-hidden="true"></i>
